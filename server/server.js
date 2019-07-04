@@ -13,12 +13,15 @@ app.use(cors());
 const router = express.Router();
 
 // MongoDB database
-const dbRoute = 'mongodb://<your-db-username-here>:<your-db-password-here>@ds249583.mlab.com:49583/fullstack_app';
+const dbRoute = 'mongodb+srv://Afraysse:California2019%21@annietestapp-o5fao.mongodb.net/test?retryWrites=true&w=majority'
 
 // connects our backend code with the database
 mongoose.connect(dbRoute, { useNewUrlParser: true });
 
+let db = mongoose.connection;
+
 // checks if connection with the database is successful
+db.once('open', () => console.log('connected to the database'));
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // only made for logger
@@ -74,3 +77,9 @@ router.delete('/deleteData', (req, res) => {
     return res.json({ succes: true });
   });
 });
+
+// append /api for our http requests
+app.use('/api', router);
+
+// launch our backend into a port
+app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
