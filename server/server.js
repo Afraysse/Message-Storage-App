@@ -1,3 +1,5 @@
+require("dotenv").config({ path: "../.env" });
+
 const mongoose = require("mongoose");
 const express = require("express");
 
@@ -7,15 +9,14 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const Data = require("./data");
 
-const API_PORT = 3001;
+const API_PORT = process.env.PORT;
 const app = express();
 app.use(cors());
 const router = express.Router();
 
 // MongoDB database
-const dbRoute =
-  "mongodb+srv://Afraysse:California2019%21@annietestapp-o5fao.mongodb.net/test?retryWrites=true&w=majority";
-
+const dbRoute = process.env.MONGO_ROUTE;
+console.log("process for mongo", process.env.MONGO_ROUTE);
 // connects our backend code with the database
 mongoose.connect(
   dbRoute,
