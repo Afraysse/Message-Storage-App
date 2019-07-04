@@ -23,4 +23,4 @@ To start the front end, run the command:
 
 ## Gap Areas
 
-Need to have frontend start up on a different Port - `Concurrently` is installed and theoretically should allow the front and backend to be start but it currently tries to run both the front end and backend on the same Port, causing chaos. I'm working on a fix for this.
+Need to have frontend start up on a different Port - `Concurrently` is installed and theoretically should allow the front and backend to start together but it currently tries to run both on the same Port, causing chaos. I'm working on a fix for this.
