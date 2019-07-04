@@ -87,7 +87,20 @@ class App extends Component {
 
 
   render() {
-    return <div>app</div>;
+    return (
+      <div>
+        <ul>
+          {data.length <= 0
+            ? 'NO DB ENTIRES YET'
+            : data.map((dat) => (
+              <li style={{ padding: '10px' }} key={data.message}>
+                <span style={{ color: 'gray' }}> id: </span> {dat.id} <br />
+                <span stye={{ color: 'gray' }}> data: </span> {dat.message} <br />
+              </li>
+          ))}
+        </ul>
+      </div>
+    )
   }
 };
 
