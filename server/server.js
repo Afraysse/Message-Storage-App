@@ -16,7 +16,6 @@ const router = express.Router();
 
 // MongoDB database
 const dbRoute = process.env.MONGO_ROUTE;
-console.log("process for mongo", process.env.MONGO_ROUTE);
 // connects our backend code with the database
 mongoose.connect(
   dbRoute,

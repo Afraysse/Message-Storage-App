@@ -34,11 +34,6 @@ class App extends Component {
     }
   }
 
-  // just a note, here, in the front end, we use the id key of our data object
-  // in order to identify which we want to Update or delete.
-  // for our back end, we use the object id assigned by MongoDB to modify
-  // data base entries
-
   // our first get method that uses our backend api to
   // fetch data from our data base
   getDataFromDb = () => {
@@ -47,16 +42,16 @@ class App extends Component {
       .then(res => this.setState({ data: res.data }));
   };
 
-  // our put method that uses our backend api
+  // our post method that uses our backend api
   // to create new query into our data base
-  putDataToDB = message => {
+  postDataToDB = message => {
     let currentIds = this.state.data.map(data => data.id);
     let idToBeAdded = 0;
     while (currentIds.includes(idToBeAdded)) {
       ++idToBeAdded;
     }
 
-    axios.post("http://localhost:3001/api/putData", {
+    axios.post("http://localhost:3001/api/createData", {
       id: idToBeAdded,
       message: message
     });
@@ -91,7 +86,7 @@ class App extends Component {
       }
     });
 
-    axios.post("http://localhost:3001/api/updateData", {
+    axios.put("http://localhost:3001/api/updateData", {
       id: objIdToUpdate,
       update: { message: updateToApply }
     });
@@ -122,7 +117,7 @@ class App extends Component {
             placeholder="add something in the database"
             style={{ width: "200px" }}
           />
-          <button onClick={() => this.putDataToDB(this.state.message)}>
+          <button onClick={() => this.postDataToDB(this.state.message)}>
             ADD
           </button>
         </div>
